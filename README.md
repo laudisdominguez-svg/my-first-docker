@@ -1,209 +1,185 @@
-# my-first-docker
-Documentation of my first steps with Docker, including installation guide and learning tutorial.
-# Mi Primer Docker en Windows con WSL 🐳
+# my-first-docker 🐳
 
-> Una guía educativa paso a paso para tu **primer contenedor Docker en Windows** usando WSL
+> Documentation of my first steps with Docker, including installation guide and learning tutorial.
+A step-by-step educational guide for your **first Docker container on Windows** using WSL
 
-Este es mi primer proyecto con Docker: documentando todo el proceso de instalación, configuración y la satisfacción de ver un contenedor funcionando en tu navegador local.
+This is my first Docker project: documenting the entire installation and configuration process, along with the satisfaction of seeing a container running in your local browser.
 
-## 🎯 ¿Qué es esto?
 
-- ✅ **Guía práctica** para instalar Docker en Windows
-- ✅ **Tutorial paso a paso** para principiantes
-- ✅ **Mi primer contenedor** (Nginx) funcionando
-- ✅ **Solución de problemas comunes**
+## 🎯 What Is This?
 
-**No es** un proyecto de código, sino **documentación de aprendizaje**.
+- ✅ A practical guide for installing Docker on Windows
+- ✅ A beginner-friendly tutorial
+- ✅ My first running container (Nginx)
+- ✅ Solutions for common issues
 
-## 📋 Requisitos
 
-- Windows 10 o 11
-- PowerShell con permisos de administrador
-- Conexión a internet
-- ~5-10 minutos de tiempo
+** This is not a coding project — it’s learning documentation.**
 
-## 📁 Estructura del Repositorio
+## 📋 Requirements
 
+- Windows 10 or 11
+- PowerShell running as Administrator
+- Internet connection
+- Around 5–10 minutes of your time
+
+
+
+## 📁 Repository Structure
 ```
-mi-primer-docker/
-└── README.md    ← Todo lo que necesitas
+my-first-docker/
+└── README.md    ← Everything you need
+└── screenshots
 ```
 
-Ese es todo el proyecto. Solo documentación. Simple y directo.
+** That’s the entire project. Just documentation. Simple and straightforward. **
 
-## 🚀 Instalación Rápida
+## 🚀 Quick Installation
 
-### 1. Verifica e Instala WSL
+## 1. Verify and Install WSL
 
 ```powershell
-# Ver distribuciones disponibles
+# View available distributions
 wsl --list --online
-
-# Instalar Ubuntu
+# Install Ubuntu
 wsl --install -d Ubuntu
-
-# Ver distribuciones instaladas
+# View installed distributions
 wsl --list --verbose
 ```
 
-### 2. Entra a Ubuntu
-
+### 2. Open Ubuntu
 ```powershell
 wsl -d Ubuntu
 ```
-
-Deberías ver:
+You should see:
 ```
-usuario@PC:~$
+user@PC:~$
 ```
 
-### 3. Instala Docker
-
+### 3. Install Docker
 ```bash
-# Actualiza paquetes
+# Update packages
 sudo apt-get update
-
-# Instala Docker
+# Install Docker
 sudo apt-get install docker.io -y
-
-# Verifica instalación
+# Verify installation
 docker --version
 ```
 
-### 4. Habilita e Inicia Docker
-
+### 4. Enable and Start Docker
 ```bash
-# Habilita para iniciar automáticamente
+# Enable Docker to start automatically
 sudo systemctl enable docker
-
-# Inicia el servicio
+# Start the service
 sudo systemctl start docker
 ```
 
-### 5. Resuelve Permisos (Si necesario)
+### 5. Fix Permissions (If Necessary)
 
-Si ves `PERMISSION DENIED`:
-
+If you see `PERMISSION DENIED`:
 ```bash
-# Agrega tu usuario al grupo docker
-sudo usermod -aG docker tu_usuario
-
-# Opción 1: Cierra y reabre Ubuntu
+# Add your user to the docker group
+sudo usermod -aG docker your_user
+# Option 1: Close and reopen Ubuntu
 exit
-# Desde PowerShell
+# From PowerShell
 wsl -d Ubuntu
-
-# Opción 2: Activa ahora
+# Option 2: Activate immediately
 newgrp docker
-
-# Verifica que funciona
+# Verify it works
 docker ps
 ```
 
-## ✅ Tu Primer Contenedor
+### ✅ Your First Container
 
 ```bash
-# Ejecuta Nginx
+# Run Nginx
 docker run -d -p 8080:80 nginx
-
-# Verifica que corre
+# Verify it is running
 docker ps
 ```
+** Open your browser: http://localhost:8080
 
-**Abre tu navegador:** `http://localhost:8080`
+You should see the Nginx welcome page ✨
 
-Deberías ver la página de bienvenida de Nginx ✨
-
-## 📚 Comandos Útiles
-
+### 📚 Useful Commands
 ```bash
-# Ver todos los contenedores (incluso detenidos)
+# View all containers (including stopped ones)
 docker ps -a
-
-# Detener un contenedor
+# Stop a container
 docker stop CONTAINER_ID
-
-# Eliminar un contenedor
+# Remove a container
 docker rm CONTAINER_ID
-
-# Ver logs
+# View logs
 docker logs CONTAINER_ID
-
-# Eliminar una imagen
+# Remove an image
 docker rmi IMAGE_ID
 ```
 
-## 🔧 Solución de Problemas
+### 🔧 Troubleshooting
 
 ### "docker: command not found"
-→ Docker no está instalado o no estás en Ubuntu vía WSL
+→ Docker is not installed or you are not inside Ubuntu through WSL
 
 ### "Permission denied while trying to connect to Docker"
-→ Tu usuario no está en el grupo docker (sigue paso 5)
+→ Your user is not in the docker group (follow Step 5)
 
 ### "Port 8080 already in use"
-→ Usa otro puerto: `docker run -d -p 8081:80 nginx`
+→ Use another port:
+docker run -d -p 8081:80 nginx
 
 ### "Cannot connect to Docker daemon"
-→ Inicia el servicio: `sudo systemctl start docker`
+→ Start the service:
+sudo systemctl start docker
 
-## 📖 ¿Qué Aprendiste?
+## 📖 What Did You Learn?
+After following this guide, you now understand:
 
-- ✅ WSL permite ejecutar Linux en Windows
-- ✅ Docker requiere permisos especiales en Linux
-- ✅ Un contenedor es una aplicación empacada y aislada
-- ✅ Puedes mapear puertos para acceder desde Windows
-- ✅ Docker Hub tiene miles de imágenes listas para usar
+- ✅ WSL allows Linux to run on Windows
+- ✅ Docker packages applications into isolated containers
+- ✅ Permissions matter in Linux
+- ✅ Port mapping connects your machine to the container
+- ✅ Docker Hub provides thousands of ready-to-use images
+- ✅ How to verify everything is working correctly
 
-## 📖 ¿Qué Aprendiste?
 
-Después de seguir esta guía, entiendes:
+## 🎓 Key Lessons
 
-- ✅ **WSL** permite ejecutar Linux en Windows
-- ✅ **Docker** empaca aplicaciones en contenedores aislados
-- ✅ **Los permisos** son importantes en Linux (solución de problemas)
-- ✅ **Mapeo de puertos** conecta tu máquina con el contenedor
-- ✅ **Docker Hub** tiene miles de imágenes listas para usar
-- ✅ Cómo **verificar** que todo funciona correctamente
+1. Documentation is your ally — every step should be verified
+2. Errors are part of learning — “Permission denied” is normal
+3. Docker simplifies deployment — one command = a working server
+4. Learning should be celebrated — seeing Nginx in your browser feels amazing 🎉
 
-## 🎓 Lecciones Clave
 
-1. **La documentación es tu aliada** - Cada paso debe verificarse
-2. **Los errores enseñan** - "Permission denied" es normal, no es un fallo tuyo
-3. **Docker simplifica las cosas** - Una línea de comando = un servidor funcionando
-4. **El aprendizaje es celebrar** - Ver Nginx en tu navegador es motivo de alegría 🎉
+## 🔗 References
 
-## 🔗 Referencias
+- [Docker Official Documentation] (https://docs.docker.com)
+- [WSL Documentation] (https://learn.microsoft.com/en-us/windows/wsl/)
+- [Docker Hub — Official Images] (https://hub.docker.com)
+- [Nginx Docker Image] (https://hub.docker.com/_/nginx)
 
-- [Documentación oficial de Docker](https://docs.docker.com)
-- [Documentación de WSL](https://learn.microsoft.com/en-us/windows/wsl/)
-- [Docker Hub - Imágenes oficiales](https://hub.docker.com)
-- [Nginx en Docker](https://hub.docker.com/_/nginx)
 
-## 📝 Notas
+## 📝 Notes
 
-- Este proyecto es **educativo y de aprendizaje**
-- Perfecto para **principiantes en Windows**
-- Probado en **Windows 11 + Ubuntu 22.04**
-- Si encuentras problemas, consulta la sección de troubleshooting
+- This project is educational and beginner-focused
+- Perfect for Windows developers starting with Docker
+- Tested on Windows 11 + Ubuntu 22.04
+- If you encounter issues, check the troubleshooting section
 
-## 🌟 Siguientes Pasos
 
-Una vez domines esto:
+## 🌟 Next Steps
+Once you master this:
 
-1. **Crea un Dockerfile personalizado** para tu aplicación
-2. **Explora Docker Compose** para múltiples contenedores
-3. **Publica en Docker Hub** tus propias imágenes
-4. **Comparte tu conocimiento** con otros principiantes
+1. Build your own custom Dockerfile
+2. Explore Docker Compose for multi-container setups
+3. Publish your own images on Docker Hub
+4. Share your knowledge with other beginners
 
-## 📄 Licencia
 
-Contenido educativo libre de usar y compartir. Haz que otros también aprendan Docker.
-
+## 📄 License
+Educational content free to use and share. Help others learn Docker too.
 ---
 
-**¿Te funcionó?** Si esta guía te ayudó, ¡déjame una ⭐ en GitHub!
-
-**¿Tienes preguntas?** Abre un issue o comenta en DEV.to.
-
-**¿Lograste tu primer contenedor?** ¡Felicidades! Acabas de entrar al mundo de Docker 🐳🎉
+**Did it work for you?** If this guide helped, leave a ⭐ on GitHub!
+**Have questions?** Open an issue or leave a comment on DEV.to.
+**Successfully ran your first container?** Congratulations — you just entered the world of Docker 🐳🎉
